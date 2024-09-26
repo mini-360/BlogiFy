@@ -8,6 +8,7 @@ import axios from "axios";
 
 import { UserContext } from "../App.jsx";
 import { storeInSession } from "../common/session.jsx";
+import { authWithGoogle } from "../common/firebase.jsx";
 
 const UserAuthForm = ({ type }) => {
   const authForm = useRef();
@@ -68,6 +69,18 @@ const UserAuthForm = ({ type }) => {
 
     userAuthThroughServer(serverRoute, formData);
   };
+
+  const handleGoogleAuth = (e) => {
+    e.preventDefault();
+    authWithGoogle().then(user => {
+      console.log(user);
+      
+    }).catch(err => {
+      toast.error("trouble login through google")
+      return console.log(err);
+      
+    })
+  }
   return (
     access_token ? <Navigate to="/" />  :
     <AnimationWrapper keyValue={type}>
@@ -111,7 +124,7 @@ const UserAuthForm = ({ type }) => {
             <p>or</p>
             <hr className="w-1/2 border-black" />
           </div>
-          <button className="btn-dark flex items-center justify-center gap-4 w-[90%] center">
+          <button className="btn-dark flex items-center justify-center gap-4 w-[90%] center" onClick={handleGoogleAuth}>
             <img src={googleIcon} className="w-5" />
             continue with google
           </button>
