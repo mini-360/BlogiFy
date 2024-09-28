@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 });
 
 
-app.use("/api/users", userRoute); 
+app.use("/api", userRoute); 
 
 app.listen(PORT, () => {
   console.log(`Server Listening on PORT ${PORT}`);

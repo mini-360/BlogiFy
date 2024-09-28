@@ -1,11 +1,11 @@
 import { useContext, useRef } from "react";
 import { Link, Navigate } from "react-router-dom";
-import InputBox from "../components/input.component.jsx";
 import googleIcon from "../imgs/google.png";
 import AnimationWrapper from "../common/page-animation.jsx";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 
+import InputBox from "../components/input.component.jsx";
 import { UserContext } from "../App.jsx";
 import { storeInSession } from "../common/session.jsx";
 import { authWithGoogle } from "../common/firebase.jsx";
@@ -33,8 +33,7 @@ const UserAuthForm = ({ type }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let serverRoute =
-      type == "sign-in" ? "/api/users/signin" : "/api/users/signup";
+    let serverRoute = type == "sign-in" ? "/api/signin" : "/api/signup";
 
     let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // regex for email
     let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/; // regex for password
@@ -69,20 +68,26 @@ const UserAuthForm = ({ type }) => {
 
     userAuthThroughServer(serverRoute, formData);
   };
+  // const handleGoogleAuth = (e) => {
+  //   e.preventDefault();
+  //   authWithGoogle().then(user => {
 
-  const handleGoogleAuth = (e) => {
-    e.preventDefault();
-    authWithGoogle().then(user => {
-      console.log(user);
-      
-    }).catch(err => {
-      toast.error("trouble login through google")
-      return console.log(err);
-      
-    })
-  }
-  return (
-    access_token ? <Navigate to="/" />  :
+  //     let serverRoute = "/api/google-auth"
+  //     let formData = {
+  //       access_token:user.accessToken
+  //     }
+  //     userAuthThroughServer(serverRoute,formData)
+
+  //   }).catch(err => {
+  //     toast.error("trouble login through google")
+  //     return console.log(err);
+
+  //   })
+  // }
+
+  return access_token ? (
+    <Navigate to="/" />
+  ) : (
     <AnimationWrapper keyValue={type}>
       <section className="h-cover flex items-center justify-center">
         <Toaster />
@@ -119,15 +124,18 @@ const UserAuthForm = ({ type }) => {
           >
             {type.replace("-", " ")}
           </button>
-          <div className="relative w-full flex items-center gap-2 my-10 opacity-10 uppercase text-black font-bold">
+          {/* <div className="relative w-full flex items-center gap-2 my-10 opacity-10 uppercase text-black font-bold">
             <hr className="w-1/2 border-black" />
             <p>or</p>
             <hr className="w-1/2 border-black" />
           </div>
-          <button className="btn-dark flex items-center justify-center gap-4 w-[90%] center" onClick={handleGoogleAuth}>
+          <button
+            className="btn-dark flex items-center justify-center gap-4 w-[90%] center"
+            onClick={handleGoogleAuth}
+          >
             <img src={googleIcon} className="w-5" />
             continue with google
-          </button>
+          </button> */}
           {type == "sign-in" ? (
             <p className="mt-6 text-dark-grey text-xl text-center">
               Don't have an account ?

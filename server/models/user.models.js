@@ -52,7 +52,7 @@ const userSchema = new Schema(
       username: {
         type: String,
         minlength: [3, "username must be 3 letters long"],
-        default: "",
+        unique:true,
       },
       bio: {
         type: String,
@@ -90,13 +90,14 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    blogs: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Blog",
-        default: [],
-      },
-    ],
+    blogs: {
+        
+          type:[ Schema.Types.ObjectId],
+          ref: "Blog",
+          default: [],
+        
+      
+    }
   },
   {
     timestamps: {
