@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import admin from "firebase-admin";
-import { getAuth } from "firebase-admin/auth";
+// import admin from "firebase-admin";
+// import { getAuth } from "firebase-admin/auth";
 
 import { User } from "../models/user.models.js";
 import { generateUsername } from "../utils/creatingUsername.js";

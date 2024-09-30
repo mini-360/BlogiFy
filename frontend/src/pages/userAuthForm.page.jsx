@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 import { Link, Navigate } from "react-router-dom";
-import googleIcon from "../imgs/google.png";
+// import googleIcon from "../imgs/google.png";
 import AnimationWrapper from "../common/page-animation.jsx";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
@@ -8,7 +8,7 @@ import axios from "axios";
 import InputBox from "../components/input.component.jsx";
 import { UserContext } from "../App.jsx";
 import { storeInSession } from "../common/session.jsx";
-import { authWithGoogle } from "../common/firebase.jsx";
+// import { authWithGoogle } from "../common/firebase.jsx";
 
 const UserAuthForm = ({ type }) => {
   const authForm = useRef();
@@ -124,7 +124,7 @@ const UserAuthForm = ({ type }) => {
           >
             {type.replace("-", " ")}
           </button>
-          {/* <div className="relative w-full flex items-center gap-2 my-10 opacity-10 uppercase text-black font-bold">
+           {/* <div className="relative w-full flex items-center gap-2 my-10 opacity-10 uppercase text-black font-bold">
             <hr className="w-1/2 border-black" />
             <p>or</p>
             <hr className="w-1/2 border-black" />
@@ -135,7 +135,7 @@ const UserAuthForm = ({ type }) => {
           >
             <img src={googleIcon} className="w-5" />
             continue with google
-          </button> */}
+          </button>  */}
           {type == "sign-in" ? (
             <p className="mt-6 text-dark-grey text-xl text-center">
               Don't have an account ?
